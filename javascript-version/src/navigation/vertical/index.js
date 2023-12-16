@@ -44,6 +44,14 @@ const navigation = () => {
       openInNewTab: true
     },
     {
+      sectionTitle: 'Ekleneneler'
+    },
+    {
+      title: "Bicycles",
+      icon: CubeOutline,
+      path: '/bicycles'
+    },
+    {
       sectionTitle: 'User Interface'
     },
     {

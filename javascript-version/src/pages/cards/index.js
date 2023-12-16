@@ -18,10 +18,17 @@ import CardWithCollapse from 'src/views/cards/CardWithCollapse'
 import CardVerticalRatings from 'src/views/cards/CardVerticalRatings'
 import CardNavigationCenter from 'src/views/cards/CardNavigationCenter'
 import CardHorizontalRatings from 'src/views/cards/CardHorizontalRatings'
+import { Button } from '@mui/material'
+import Link from 'next/link'
 
 const CardBasic = () => {
   return (
     <Grid container spacing={6}>
+      {/* go to memed pages */}
+      <Button color='primary' >
+        <Link href='/bicycles/memed'>memedd</Link>
+      </Button>
+
       <Grid item xs={12} sx={{ paddingBottom: 4 }}>
         <Typography variant='h5'>Basic Cards</Typography>
       </Grid>
