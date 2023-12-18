@@ -1,6 +1,7 @@
 const path = require('path')
 
 module.exports = {
+  output: 'export',
   trailingSlash: true,
   reactStrictMode: false,
   experimental: {

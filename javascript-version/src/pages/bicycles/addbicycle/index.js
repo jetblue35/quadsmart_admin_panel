@@ -1,50 +1,35 @@
-import React, { useState } from 'react';
-import { Button, FormControl } from '@mui/material';
+import React, { useState } from 'react'
+import { Button, FormControl } from '@mui/material'
+
+import Grid from '@mui/material/Grid'
+
+// ** Styled Component
+import DatePickerWrapper from 'src/@core/styles/libs/react-datepicker'
+
+// ** Demo Components Imports
+import AddBicycleForm from 'src/views/bicycles/addbicycle/AddBicycleForm'
 
 const AddBicycle = () => {
-  const [batteryPercentage, setBatteryPercentage] = useState('');
-  const [latitude, setLatitude] = useState()
-  const [longitude, setLongitude] = useState()
+  const [batteryPercentage, setBatteryPercentage] = useState('')
+  const [latitude, setLatitude] = useState('')
+  const [longitude, setLongitude] = useState('')
 
   const handleSubmit = () => {
-    console.log("handleSubmit")
+    console.log('handleSubmit')
     console.log(batteryPercentage)
     console.log(latitude)
     console.log(longitude)
-  };
+  }
 
   return (
     <div>
-      <FormControl onSubmit={handleSubmit}>
-        <label htmlFor="name">Battery Percentage</label>
-        <input
-          type="number"
-          name="name"
-          id="name"
-          onChange={(e) => setBatteryPercentage(e.target.value)}
-        />
-
-        <label htmlFor="name">Latitude</label>
-        <input
-          type="number"
-          name="name"
-          id="name"
-          onChange={(e) => setLatitude(e.target.value)}
-        />
-
-        <label htmlFor="name">Longitude</label>
-        <input
-          type="number"
-          name="name"
-          id="name"
-          onChange={(e) => setLongitude(e.target.value)}
-        />
-
-
-        <Button type="submit" onClick={() => handleSubmit()}>Submit</Button>
-      </FormControl>
+      <Grid container spacing={6}>
+        <Grid item xs={12} md={6}>
+          <AddBicycleForm />
+        </Grid>
+      </Grid>
     </div>
-  );
-};
+  )
+}
 
-export default AddBicycle;
+export default AddBicycle

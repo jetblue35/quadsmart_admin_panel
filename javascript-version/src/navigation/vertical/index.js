@@ -9,6 +9,7 @@ import CreditCardOutline from 'mdi-material-ui/CreditCardOutline'
 import AccountPlusOutline from 'mdi-material-ui/AccountPlusOutline'
 import AlertCircleOutline from 'mdi-material-ui/AlertCircleOutline'
 import GoogleCirclesExtended from 'mdi-material-ui/GoogleCirclesExtended'
+import { Bicycle, Map } from 'mdi-material-ui'
 
 const navigation = () => {
   return [
@@ -47,9 +48,14 @@ const navigation = () => {
       sectionTitle: 'Ekleneneler'
     },
     {
-      title: "Bicycles",
-      icon: CubeOutline,
+      title: 'Bicycles',
+      icon: Bicycle,
       path: '/bicycles'
+    },
+    {
+      title: 'Maps',
+      icon: Map,
+      path: '/maps'
     },
     {
       sectionTitle: 'User Interface'
