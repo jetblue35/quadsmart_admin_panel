@@ -83,7 +83,7 @@ const WeeklyOverview = () => {
   return (
     <Card>
       <CardHeader
-        title='Weekly Overview'
+        title='Weekly Usage'
         titleTypographyProps={{
           sx: { lineHeight: '2rem !important', letterSpacing: '0.15px !important' }
         }}
@@ -99,7 +99,7 @@ const WeeklyOverview = () => {
           <Typography variant='h5' sx={{ mr: 4 }}>
             45%
           </Typography>
-          <Typography variant='body2'>Your sales performance is 45% 😎 better compared to last month</Typography>
+          <Typography variant='body2'>Your usage is 45% 😎 higher compared to last week</Typography>
         </Box>
         <Button fullWidth variant='contained'>
           Details

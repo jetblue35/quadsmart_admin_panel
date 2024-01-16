@@ -21,44 +21,53 @@ import StatisticsCard from 'src/views/dashboard/StatisticsCard'
 import WeeklyOverview from 'src/views/dashboard/WeeklyOverview'
 import DepositWithdraw from 'src/views/dashboard/DepositWithdraw'
 import SalesByCountries from 'src/views/dashboard/SalesByCountries'
+import { CurrencyTry } from 'mdi-material-ui'
 
 const Dashboard = () => {
   return (
     <ApexChartWrapper>
       <Grid container spacing={6}>
         <Grid item xs={12} md={4}>
-          <Trophy />
+        <WeeklyOverview />
         </Grid>
-        <Grid item xs={12} md={8}>
-          <StatisticsCard />
+        <Grid item xs={12} md={8} >
+          
+          
+          <Grid container spacing={3}>
+      <Grid item xs={12}>
+      <StatisticsCard />
+      </Grid>
+      <Grid item xs={12}>
+      <TotalEarning />
+      </Grid>
+    </Grid>
+        </Grid>
+        <Grid item xs={12} md={8} lg={4}>
+        
         </Grid>
         <Grid item xs={12} md={6} lg={4}>
-          <WeeklyOverview />
-        </Grid>
-        <Grid item xs={12} md={6} lg={4}>
-          <TotalEarning />
+          
         </Grid>
         <Grid item xs={12} md={6} lg={4}>
           <Grid container spacing={6}>
             <Grid item xs={6}>
               <CardStatisticsVerticalComponent
-                stats='$25.6k'
+                stats='88TL'
                 icon={<Poll />}
                 color='success'
                 trendNumber='+42%'
-                title='Total Profit'
+                title='Total Balance'
                 subtitle='Weekly Profit'
               />
             </Grid>
             <Grid item xs={6}>
               <CardStatisticsVerticalComponent
-                stats='$78'
+                stats='0TL'
                 title='Refunds'
                 trend='negative'
                 color='secondary'
-                trendNumber='-15%'
                 subtitle='Past Month'
-                icon={<CurrencyUsd />}
+                icon={<CurrencyTry />}
               />
             </Grid>
             <Grid item xs={6}>

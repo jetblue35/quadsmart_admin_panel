@@ -9,7 +9,7 @@ import CreditCardOutline from 'mdi-material-ui/CreditCardOutline'
 import AccountPlusOutline from 'mdi-material-ui/AccountPlusOutline'
 import AlertCircleOutline from 'mdi-material-ui/AlertCircleOutline'
 import GoogleCirclesExtended from 'mdi-material-ui/GoogleCirclesExtended'
-import { Bicycle, Map } from 'mdi-material-ui'
+import { Bicycle, Human, Map } from 'mdi-material-ui'
 
 const navigation = () => {
   return [
@@ -39,13 +39,15 @@ const navigation = () => {
       openInNewTab: true
     },
     {
-      title: 'Error',
+      title: 'Logs',
       icon: AlertCircleOutline,
       path: '/pages/error',
       openInNewTab: true
     },
     {
-      sectionTitle: 'Ekleneneler'
+      title: 'Users',
+      icon: Human,
+      path: '/users'
     },
     {
       title: 'Bicycles',
@@ -56,34 +58,6 @@ const navigation = () => {
       title: 'Maps',
       icon: Map,
       path: '/maps'
-    },
-    {
-      sectionTitle: 'User Interface'
-    },
-    {
-      title: 'Typography',
-      icon: FormatLetterCase,
-      path: '/typography'
-    },
-    {
-      title: 'Icons',
-      path: '/icons',
-      icon: GoogleCirclesExtended
-    },
-    {
-      title: 'Cards',
-      icon: CreditCardOutline,
-      path: '/cards'
-    },
-    {
-      title: 'Tables',
-      icon: Table,
-      path: '/tables'
-    },
-    {
-      icon: CubeOutline,
-      title: 'Form Layouts',
-      path: '/form-layouts'
     }
   ]
 }

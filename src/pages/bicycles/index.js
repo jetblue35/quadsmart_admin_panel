@@ -17,13 +17,12 @@ const Bicycles = () => {
   ]
 
   const data = [
-    { id: 132, battery_percentage: '31', latitude: '90.05', longitude: '-90.00', fare: 'NORMAL' },
-    { id: 12, battery_percentage: '69', latitude: '102.56', longitude: '-10.43', fare: 'NORMAL' }
+    { id: 132, battery_percentage: '85', latitude: '90.05', longitude: '-90.00', fare: 'NORMAL' },
+    { id: 12, battery_percentage: '26', latitude: '102.56', longitude: '-10.43', fare: 'NORMAL' }
   ]
 
   return (
     <div>
-      <div>bicycles</div>
       <Button size='small' variant='contained' href='/bicycles/addbicycle'>
         Add Bicycle
       </Button>
@@ -31,7 +30,7 @@ const Bicycles = () => {
         <Grid container spacing={6}>
           <Grid item xs={12}>
             <Card>
-              <CardHeader title='Basic Table' titleTypographyProps={{ variant: 'h6' }} />
+              <CardHeader title='Bicycle Table' titleTypographyProps={{ variant: 'h6' }} />
               <BasicTable columns={columns} data={data} />
             </Card>
           </Grid>

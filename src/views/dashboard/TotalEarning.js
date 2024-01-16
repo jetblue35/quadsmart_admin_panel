@@ -13,40 +13,14 @@ import MenuUp from 'mdi-material-ui/MenuUp'
 import DotsVertical from 'mdi-material-ui/DotsVertical'
 
 const data = [
-  {
-    progress: 75,
-    imgHeight: 20,
-    title: 'Zipcar',
-    color: 'primary',
-    amount: '$24,895.65',
-    subtitle: 'Vuejs, React & HTML',
-    imgSrc: '/images/cards/logo-zipcar.png'
-  },
-  {
-    progress: 50,
-    color: 'info',
-    imgHeight: 27,
-    title: 'Bitbank',
-    amount: '$8,650.20',
-    subtitle: 'Sketch, Figma & XD',
-    imgSrc: '/images/cards/logo-bitbank.png'
-  },
-  {
-    progress: 20,
-    imgHeight: 20,
-    title: 'Aviato',
-    color: 'secondary',
-    amount: '$1,245.80',
-    subtitle: 'HTML & Angular',
-    imgSrc: '/images/cards/logo-aviato.png'
-  }
+  
 ]
 
 const TotalEarning = () => {
   return (
     <Card>
       <CardHeader
-        title='Total Earning'
+        title='Total Bonus'
         titleTypographyProps={{ sx: { lineHeight: '1.6 !important', letterSpacing: '0.15px !important' } }}
         action={
           <IconButton size='small' aria-label='settings' className='card-more-options' sx={{ color: 'text.secondary' }}>
@@ -57,7 +31,7 @@ const TotalEarning = () => {
       <CardContent sx={{ pt: theme => `${theme.spacing(2.25)} !important` }}>
         <Box sx={{ mb: 1.5, display: 'flex', alignItems: 'center' }}>
           <Typography variant='h4' sx={{ fontWeight: 600, fontSize: '2.125rem !important' }}>
-            $24,895
+            24,8 TL
           </Typography>
           <Box sx={{ display: 'flex', alignItems: 'center', color: 'success.main' }}>
             <MenuUp sx={{ fontSize: '1.875rem', verticalAlign: 'middle' }} />
@@ -68,7 +42,7 @@ const TotalEarning = () => {
         </Box>
 
         <Typography component='p' variant='caption' sx={{ mb: 10 }}>
-          Compared to $84,325 last year
+          Compared to 12 TL last month
         </Typography>
 
         {data.map((item, index) => {
