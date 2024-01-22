@@ -83,7 +83,7 @@ const LoginPage = () => {
       api_key: process.env.api_key
     }
 
-    const response = await fetch(`https://rental_management_api.railway.internal/v1/auth/login/server/admin`, {
+    const response = await fetch(`rental_management_api.railway.internal/v1/auth/login/server/admin`, {
       method: 'POST',
       body: JSON.stringify(data),
       headers: {
