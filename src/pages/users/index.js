@@ -24,6 +24,7 @@ const Users = () => {
       try {
         const api_key = process.env.api_key
         const x_token = localStorage.getItem('token')
+		
         const options = {
           method: 'GET',
           headers: {
@@ -44,8 +45,9 @@ const Users = () => {
             mail: user['email'],
             balance: user['balance'] + ' TL',
             password: user['password']
-            // Add more fields as needed
+			
           }))
+		  
           setUsers(rows)
         }
       } catch (error) {

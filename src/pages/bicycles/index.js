@@ -24,6 +24,7 @@ const Bicycles = () => {
       try {
         const api_key = process.env.api_key
         const x_token = localStorage.getItem('token')
+
         const options = {
           method: 'GET',
           headers: {
@@ -44,8 +45,9 @@ const Bicycles = () => {
             latitude: bike['coordinates']['latitude'],
             longitude: bike['coordinates']['longitude'],
             status: bike['status']
-            // Add more fields as needed
+			
           }))
+
           setBicycles(rows)
         }
       } catch (error) {
