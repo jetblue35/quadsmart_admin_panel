@@ -24,7 +24,7 @@ const Users = () => {
       try {
         const api_key = process.env.api_key
         const x_token = localStorage.getItem('token')
-		
+
         const options = {
           method: 'GET',
           headers: {
@@ -33,7 +33,10 @@ const Users = () => {
           }
         }
 
-        const response = await fetch('http://localhost:443/v1/users?api_key=' + process.env.api_key, options)
+        const response = await fetch(
+          'http://rental_management_api.railway.internal/v1/users?api_key=' + process.env.api_key,
+          options
+        )
         const data = await response.json()
         const users = data['users']
         if (Array.isArray(users) && users.length > 0) {
@@ -45,9 +48,8 @@ const Users = () => {
             mail: user['email'],
             balance: user['balance'] + ' TL',
             password: user['password']
-			
           }))
-		  
+
           setUsers(rows)
         }
       } catch (error) {

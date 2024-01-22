@@ -33,7 +33,10 @@ const Bicycles = () => {
           }
         }
 
-        const response = await fetch('http://localhost:443/v1/scooters?api_key=' + process.env.api_key, options)
+        const response = await fetch(
+          'http://rental_management_api.railway.internal/v1/scooters?api_key=' + process.env.api_key,
+          options
+        )
         const data = await response.json()
         const bicycles = data['scooters']
         if (Array.isArray(bicycles) && bicycles.length > 0) {
@@ -45,7 +48,6 @@ const Bicycles = () => {
             latitude: bike['coordinates']['latitude'],
             longitude: bike['coordinates']['longitude'],
             status: bike['status']
-			
           }))
 
           setBicycles(rows)
