@@ -4,8 +4,10 @@ import 'mapbox-gl/dist/mapbox-gl.css'
 const Maps = () => {
   const Map = ReactMapboxGl({
     accessToken: 'pk.eyJ1IjoiZW1yYWhrdWN1ayIsImEiOiJjbHFiYm5qZWwxeDNzMmtudjZ1NmVvNW5tIn0.vdiKiWjmM2zVWfPw_lA98Q'
-  })
-  return (
+  });
+  
+  return(
+  
     <div>
       <Map
         style='mapbox://styles/mapbox/streets-v9'
