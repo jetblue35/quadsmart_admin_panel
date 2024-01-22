@@ -32,10 +32,7 @@ const Users = () => {
           }
         }
 
-        const response = await fetch(
-          'https://rentalmanagementapi-production.up.railway.app/v1/users?api_key=' + process.env.api_key,
-          options
-        )
+        const response = await fetch('http://localhost:443/v1/users?api_key=' + process.env.api_key, options)
         const data = await response.json()
         const users = data['users']
         if (Array.isArray(users) && users.length > 0) {

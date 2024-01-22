@@ -32,10 +32,7 @@ const Bicycles = () => {
           }
         }
 
-        const response = await fetch(
-          'https://rentalmanagementapi-production.up.railway.app/v1/scooters?api_key=' + process.env.api_key,
-          options
-        )
+        const response = await fetch('http://localhost:443/v1/scooters?api_key=' + process.env.api_key, options)
         const data = await response.json()
         const bicycles = data['scooters']
         if (Array.isArray(bicycles) && bicycles.length > 0) {
