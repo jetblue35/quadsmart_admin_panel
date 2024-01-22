@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
 
 import Button from '@mui/material/Button'
 import TableBasic from 'src/views/tables/TableBasic'
@@ -8,18 +8,55 @@ import CardHeader from '@mui/material/CardHeader'
 import BasicTable from 'src/views/bicycles/BasicTable'
 
 const Bicycles = () => {
+
+  const [bicycles, setBicycles] = useState([]);
+
   const columns = [
     { id: 'id', label: 'ID' },
+    {id: 'name', label: 'NAME'},
     { id: 'battery_percentage', label: 'BATTERY PERCENTAGE' },
     { id: 'latitude', label: 'LATITUDE' },
     { id: 'longitude', label: 'LONGITUDE' },
-    { id: 'fare', label: 'FARE' }
+    { id: 'status', label: 'STATUS' }
   ]
 
-  const data = [
-    { id: 132, battery_percentage: '85', latitude: '90.05', longitude: '-90.00', fare: 'NORMAL' },
-    { id: 12, battery_percentage: '26', latitude: '102.56', longitude: '-10.43', fare: 'NORMAL' }
-  ]
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const api_key = "AIzaSyA8OZC5Yg2qaxu1B5loyXtNRjlgG8XinnU";
+        const x_token = localStorage.getItem("token");
+        const options = {
+          method: "GET",
+          headers: {
+            "content-type": "application/json",
+            "x-access-token": x_token
+          }
+        };
+        
+        const response = await fetch('https://rentalmanagementapi-production.up.railway.app/v1/scooters?api_key=AIzaSyA8OZC5Yg2qaxu1B5loyXtNRjlgG8XinnU',options); 
+        const data = await response.json();
+        const bicycles = data['scooters']
+        if (Array.isArray(bicycles) && bicycles.length > 0) {
+          // Map each object in the array to a new object with specific fields
+          const rows = bicycles.map((bike) => ({
+            id: bike['_id'],
+            name: bike['name'],
+            battery_percentage: bike['battery'],
+            latitude: bike['coordinates']['latitude'],
+            longitude: bike['coordinates']['longitude'],
+            longitude: bike['status']
+            // Add more fields as needed
+          }));
+          setBicycles(rows);
+        }
+        
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <div>
@@ -27,11 +64,11 @@ const Bicycles = () => {
         Add Bicycle
       </Button>
       <div>
-        <Grid container spacing={6}>
+        <Grid container spacing={4}>
           <Grid item xs={12}>
             <Card>
               <CardHeader title='Bicycle Table' titleTypographyProps={{ variant: 'h6' }} />
-              <BasicTable columns={columns} data={data} />
+              <BasicTable columns={columns} data={bicycles} />
             </Card>
           </Grid>
         </Grid>

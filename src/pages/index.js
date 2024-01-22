@@ -1,110 +1,175 @@
-// ** MUI Imports
-import Grid from '@mui/material/Grid'
+// ** React Imports
+import { useState } from 'react'
 
-// ** Icons Imports
-import Poll from 'mdi-material-ui/Poll'
-import CurrencyUsd from 'mdi-material-ui/CurrencyUsd'
-import HelpCircleOutline from 'mdi-material-ui/HelpCircleOutline'
-import BriefcaseVariantOutline from 'mdi-material-ui/BriefcaseVariantOutline'
+// ** Next Imports
+import Link from 'next/link'
+import { useRouter } from 'next/router'
 
-// ** Custom Components Imports
-import CardStatisticsVerticalComponent from 'src/@core/components/card-statistics/card-stats-vertical'
+// ** MUI Components
+import Box from '@mui/material/Box'
+import Button from '@mui/material/Button'
+import Checkbox from '@mui/material/Checkbox'
+import TextField from '@mui/material/TextField'
+import InputLabel from '@mui/material/InputLabel'
+import Typography from '@mui/material/Typography'
+import IconButton from '@mui/material/IconButton'
+import CardContent from '@mui/material/CardContent'
+import FormControl from '@mui/material/FormControl'
+import OutlinedInput from '@mui/material/OutlinedInput'
+import { styled, useTheme } from '@mui/material/styles'
+import MuiCard from '@mui/material/Card'
+import InputAdornment from '@mui/material/InputAdornment'
+import MuiFormControlLabel from '@mui/material/FormControlLabel'
 
-// ** Styled Component Import
-import ApexChartWrapper from 'src/@core/styles/libs/react-apexcharts'
+import EyeOutline from 'mdi-material-ui/EyeOutline'
+import EyeOffOutline from 'mdi-material-ui/EyeOffOutline'
 
-// ** Demo Components Imports
-import Table from 'src/views/dashboard/Table'
-import Trophy from 'src/views/dashboard/Trophy'
-import TotalEarning from 'src/views/dashboard/TotalEarning'
-import StatisticsCard from 'src/views/dashboard/StatisticsCard'
-import WeeklyOverview from 'src/views/dashboard/WeeklyOverview'
-import DepositWithdraw from 'src/views/dashboard/DepositWithdraw'
-import SalesByCountries from 'src/views/dashboard/SalesByCountries'
-import { CurrencyTry } from 'mdi-material-ui'
+// ** Configs
+import themeConfig from 'src/configs/themeConfig'
 
-const Dashboard = () => {
+// ** Layout Import
+import BlankLayout from 'src/@core/layouts/BlankLayout'
+
+// ** Demo Imports
+import FooterIllustrationsV1 from 'src/views/pages/auth/FooterIllustration'
+import { Login } from 'mdi-material-ui'
+
+// ** Styled Components
+const Card = styled(MuiCard)(({ theme }) => ({
+  [theme.breakpoints.up('sm')]: { width: '28rem' }
+}))
+
+const LinkStyled = styled('a')(({ theme }) => ({
+  fontSize: '0.875rem',
+  textDecoration: 'none',
+  color: theme.palette.primary.main
+}))
+
+const FormControlLabel = styled(MuiFormControlLabel)(({ theme }) => ({
+  '& .MuiFormControlLabel-label': {
+    fontSize: '0.875rem',
+    color: theme.palette.text.secondary
+  }
+}))
+
+const LoginPage = () => {
+  // ** State
+  const [values, setValues] = useState({
+    email: '',
+    password: '',
+    showPassword: false
+  })
+
+  // ** Hook
+  const theme = useTheme()
+  const router = useRouter()
+
+  const handleChange = prop => event => {
+    setValues({ ...values, [prop]: event.target.value })
+  }
+
+  const handleClickShowPassword = () => {
+    setValues({ ...values, showPassword: !values.showPassword })
+  }
+
+  const handleMouseDownPassword = event => {
+    event.preventDefault()
+  }
+
+  const logIn = async () =>{
+    console.log("girdi")
+    const data = {
+      email: values.email,
+      password: values.password,
+      api_key: "AIzaSyA8OZC5Yg2qaxu1B5loyXtNRjlgG8XinnU",
+    };
+
+    const response = await fetch(
+      `https://rentalmanagementapi-production.up.railway.app/v1/auth/login/server/admin`,
+      {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+          "content-type": "application/json",
+        },
+      }
+    );
+    const result = await response.json();
+      console.log(result)
+    if (result.data.type === "success") {
+        const token = result.data.token
+
+        console.log(token)
+        localStorage.setItem( "token", token );
+        router.push("/home")
+
+      }
+      
+    };
+    
+  
+
   return (
-    <ApexChartWrapper>
-      <Grid container spacing={6}>
-        <Grid item xs={12} md={4}>
-        <WeeklyOverview />
-        </Grid>
-        <Grid item xs={12} md={8} >
+    <Box className='content-center'>
+      <Card sx={{ zIndex: 1 }}>
+        <CardContent sx={{ padding: theme => `${theme.spacing(12, 9, 7)} !important` }}>
           
-          
-          <Grid container spacing={3}>
-      <Grid item xs={12}>
-      <StatisticsCard />
-      </Grid>
-      <Grid item xs={12}>
-      <TotalEarning />
-      </Grid>
-    </Grid>
-        </Grid>
-        <Grid item xs={12} md={8} lg={4}>
-        
-        </Grid>
-        <Grid item xs={12} md={6} lg={4}>
-          
-        </Grid>
-        <Grid item xs={12} md={6} lg={4}>
-          <Grid container spacing={6}>
-            <Grid item xs={6}>
-              <CardStatisticsVerticalComponent
-                stats='88TL'
-                icon={<Poll />}
-                color='success'
-                trendNumber='+42%'
-                title='Total Balance'
-                subtitle='Weekly Profit'
+          <Box sx={{ mb: 6 }}>
+            <Typography variant='h5' sx={{ fontWeight: 600, marginBottom: 1.5 }}>
+              Welcome to {themeConfig.templateName}! 👋🏻
+            </Typography>
+            <Typography variant='body2'>Please sign-in to your account and start the adventure</Typography>
+          </Box>
+          <form noValidate autoComplete='off' onSubmit={e => e.preventDefault()}>
+            <TextField autoFocus fullWidth id='email' label='Email' sx={{ marginBottom: 4 }} onChange={handleChange('email')}/>
+            <FormControl fullWidth>
+              <InputLabel htmlFor='auth-login-password'>Password</InputLabel>
+              <OutlinedInput
+                label='Password'
+                value={values.password}
+                id='auth-login-password'
+                onChange={handleChange('password')}
+                type={values.showPassword ? 'text' : 'password'}
+                endAdornment={
+                  <InputAdornment position='end'>
+                    <IconButton
+                      edge='end'
+                      onClick={handleClickShowPassword}
+                      onMouseDown={handleMouseDownPassword}
+                      aria-label='toggle password visibility'
+                    >
+                      {values.showPassword ? <EyeOutline /> : <EyeOffOutline />}
+                    </IconButton>
+                  </InputAdornment>
+                }
               />
-            </Grid>
-            <Grid item xs={6}>
-              <CardStatisticsVerticalComponent
-                stats='0TL'
-                title='Refunds'
-                trend='negative'
-                color='secondary'
-                subtitle='Past Month'
-                icon={<CurrencyTry />}
-              />
-            </Grid>
-            <Grid item xs={6}>
-              <CardStatisticsVerticalComponent
-                stats='862'
-                trend='negative'
-                trendNumber='-18%'
-                title='New Project'
-                subtitle='Yearly Project'
-                icon={<BriefcaseVariantOutline />}
-              />
-            </Grid>
-            <Grid item xs={6}>
-              <CardStatisticsVerticalComponent
-                stats='15'
-                color='warning'
-                trend='negative'
-                trendNumber='-18%'
-                subtitle='Last Week'
-                title='Sales Queries'
-                icon={<HelpCircleOutline />}
-              />
-            </Grid>
-          </Grid>
-        </Grid>
-        <Grid item xs={12} md={6} lg={4}>
-          <SalesByCountries />
-        </Grid>
-        <Grid item xs={12} md={12} lg={8}>
-          <DepositWithdraw />
-        </Grid>
-        <Grid item xs={12}>
-          <Table />
-        </Grid>
-      </Grid>
-    </ApexChartWrapper>
+            </FormControl>
+            <Box
+              sx={{ mb: 4, display: 'flex', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'space-between' }}
+            >
+              <FormControlLabel control={<Checkbox />} label='Remember Me' />
+              <Link passHref href='/home'>
+                <LinkStyled onClick={e => e.preventDefault()}>Forgot Password?</LinkStyled>
+              </Link>
+            </Box>
+            <Button
+              fullWidth
+              size='large'
+              variant='contained'
+              sx={{ marginBottom: 7 }}
+              onClick={logIn}
+            >
+              Login
+            </Button>
+            
+            
+          </form>
+        </CardContent>
+      </Card>
+      <FooterIllustrationsV1 />
+    </Box>
   )
 }
+LoginPage.getLayout = page => <BlankLayout>{page}</BlankLayout>
 
-export default Dashboard
+export default LoginPage
