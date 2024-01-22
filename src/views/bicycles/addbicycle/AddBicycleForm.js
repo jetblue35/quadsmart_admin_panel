@@ -50,7 +50,7 @@ const AddBicycleForm = () => {
       api_key: process.env.api_key
     }
     const x_token = localStorage.getItem('token')
-    const response = await fetch(`rental_management_api.railway.internal/v1/scooters`, {
+    const response = await fetch(`https://rentalmanagementapi-production.up.railway.app/v1/scooters`, {
       method: 'POST',
       body: JSON.stringify(data),
       headers: {

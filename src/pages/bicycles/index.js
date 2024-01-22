@@ -34,7 +34,7 @@ const Bicycles = () => {
         }
 
         const response = await fetch(
-          'rental_management_api.railway.internal/v1/scooters?api_key=' + process.env.api_key,
+          'https://rentalmanagementapi-production.up.railway.app/v1/scooters?api_key=' + process.env.api_key,
           options
         )
         const data = await response.json()
