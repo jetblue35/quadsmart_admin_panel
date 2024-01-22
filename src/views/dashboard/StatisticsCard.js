@@ -23,7 +23,7 @@ const salesData = [
     color: 'primary',
     icon: <TrendingUp sx={{ fontSize: '1.75rem' }} />
   },
-  
+
   {
     stats: '88 TL',
     color: 'info',
@@ -62,7 +62,7 @@ const StatisticsCard = () => {
   return (
     <Card>
       <CardHeader
-        title='Your Statistics'
+        title='Total Statistics'
         action={
           <IconButton size='small' aria-label='settings' className='card-more-options' sx={{ color: 'text.secondary' }}>
             <DotsVertical />

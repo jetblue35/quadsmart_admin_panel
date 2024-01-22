@@ -16,9 +16,6 @@ const AddBicycle = () => {
 
   const handleSubmit = () => {
     console.log('handleSubmit')
-    console.log(batteryPercentage)
-    console.log(latitude)
-    console.log(longitude)
   }
 
   return (

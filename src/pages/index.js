@@ -76,44 +76,35 @@ const LoginPage = () => {
     event.preventDefault()
   }
 
-  const logIn = async () =>{
-    console.log("girdi")
+  const logIn = async () => {
     const data = {
       email: values.email,
       password: values.password,
-      api_key: "AIzaSyA8OZC5Yg2qaxu1B5loyXtNRjlgG8XinnU",
-    };
+      api_key: 'AIzaSyA8OZC5Yg2qaxu1B5loyXtNRjlgG8XinnU'
+    }
 
-    const response = await fetch(
-      `https://rentalmanagementapi-production.up.railway.app/v1/auth/login/server/admin`,
-      {
-        method: "POST",
-        body: JSON.stringify(data),
-        headers: {
-          "content-type": "application/json",
-        },
+    const response = await fetch(`https://rentalmanagementapi-production.up.railway.app/v1/auth/login/server/admin`, {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'content-type': 'application/json'
       }
-    );
-    const result = await response.json();
-      console.log(result)
-    if (result.data.type === "success") {
-        const token = result.data.token
+    })
+    const result = await response.json()
+    console.log(result)
+    if (result.data.type === 'success') {
+      const token = result.data.token
 
-        console.log(token)
-        localStorage.setItem( "token", token );
-        router.push("/home")
-
-      }
-      
-    };
-    
-  
+      console.log(token)
+      localStorage.setItem('token', token)
+      router.push('/users')
+    }
+  }
 
   return (
     <Box className='content-center'>
       <Card sx={{ zIndex: 1 }}>
         <CardContent sx={{ padding: theme => `${theme.spacing(12, 9, 7)} !important` }}>
-          
           <Box sx={{ mb: 6 }}>
             <Typography variant='h5' sx={{ fontWeight: 600, marginBottom: 1.5 }}>
               Welcome to {themeConfig.templateName}! 👋🏻
@@ -121,7 +112,14 @@ const LoginPage = () => {
             <Typography variant='body2'>Please sign-in to your account and start the adventure</Typography>
           </Box>
           <form noValidate autoComplete='off' onSubmit={e => e.preventDefault()}>
-            <TextField autoFocus fullWidth id='email' label='Email' sx={{ marginBottom: 4 }} onChange={handleChange('email')}/>
+            <TextField
+              autoFocus
+              fullWidth
+              id='email'
+              label='Email'
+              sx={{ marginBottom: 4 }}
+              onChange={handleChange('email')}
+            />
             <FormControl fullWidth>
               <InputLabel htmlFor='auth-login-password'>Password</InputLabel>
               <OutlinedInput
@@ -152,17 +150,9 @@ const LoginPage = () => {
                 <LinkStyled onClick={e => e.preventDefault()}>Forgot Password?</LinkStyled>
               </Link>
             </Box>
-            <Button
-              fullWidth
-              size='large'
-              variant='contained'
-              sx={{ marginBottom: 7 }}
-              onClick={logIn}
-            >
+            <Button fullWidth size='large' variant='contained' sx={{ marginBottom: 7 }} onClick={logIn}>
               Login
             </Button>
-            
-            
           </form>
         </CardContent>
       </Card>

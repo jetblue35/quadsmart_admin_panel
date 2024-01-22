@@ -28,26 +28,20 @@ const Dashboard = () => {
     <ApexChartWrapper>
       <Grid container spacing={6}>
         <Grid item xs={12} md={4}>
-        <WeeklyOverview />
+          <WeeklyOverview />
         </Grid>
-        <Grid item xs={12} md={8} >
-          
-          
+        <Grid item xs={12} md={8}>
           <Grid container spacing={3}>
-      <Grid item xs={12}>
-      <StatisticsCard />
-      </Grid>
-      <Grid item xs={12}>
-      <TotalEarning />
-      </Grid>
-    </Grid>
+            <Grid item xs={12}>
+              <StatisticsCard />
+            </Grid>
+            <Grid item xs={12}>
+              <TotalEarning />
+            </Grid>
+          </Grid>
         </Grid>
-        <Grid item xs={12} md={8} lg={4}>
-        
-        </Grid>
-        <Grid item xs={12} md={6} lg={4}>
-          
-        </Grid>
+        <Grid item xs={12} md={8} lg={4}></Grid>
+        <Grid item xs={12} md={6} lg={4}></Grid>
         <Grid item xs={12} md={6} lg={4}>
           <Grid container spacing={6}>
             <Grid item xs={6}>
@@ -92,15 +86,6 @@ const Dashboard = () => {
               />
             </Grid>
           </Grid>
-        </Grid>
-        <Grid item xs={12} md={6} lg={4}>
-          <SalesByCountries />
-        </Grid>
-        <Grid item xs={12} md={12} lg={8}>
-          <DepositWithdraw />
-        </Grid>
-        <Grid item xs={12}>
-          <Table />
         </Grid>
       </Grid>
     </ApexChartWrapper>

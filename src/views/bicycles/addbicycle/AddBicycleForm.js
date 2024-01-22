@@ -1,6 +1,8 @@
 // ** React Imports
 import { useState } from 'react'
 
+import { useRouter } from 'next/router'
+
 // ** MUI Imports
 import Box from '@mui/material/Box'
 import Card from '@mui/material/Card'
@@ -25,43 +27,39 @@ import EyeOutline from 'mdi-material-ui/EyeOutline'
 import EyeOffOutline from 'mdi-material-ui/EyeOffOutline'
 
 const AddBicycleForm = () => {
-  const [latitude, setLatitude] = useState('')
-  const [longitude, setLongitude] = useState('')
+  const router = useRouter()
 
-  const [fare, setFare] = useState('')
-
-  const handleFareChange = event => {
-    setFare(event.target.value)
-  }
-  // ** States
   const [values, setValues] = useState({
-    password: '',
-    showPassword: false
-  })
-
-  const [confirmPassValues, setConfirmPassValues] = useState({
-    password: '',
-    showPassword: false
+    city: '',
+    battery: '',
+    latitude: '',
+    longitude: ''
   })
 
   const handleChange = prop => event => {
     setValues({ ...values, [prop]: event.target.value })
   }
 
-  const handleConfirmPassChange = prop => event => {
-    setConfirmPassValues({ ...confirmPassValues, [prop]: event.target.value })
-  }
-
-  const handleClickShowPassword = () => {
-    setValues({ ...values, showPassword: !values.showPassword })
-  }
-
-  const handleClickConfirmPassShow = () => {
-    setConfirmPassValues({ ...confirmPassValues, showPassword: !confirmPassValues.showPassword })
-  }
-
-  const handleMouseDownPassword = event => {
-    event.preventDefault()
+  const add = async () => {
+    const data = {
+      owner: values.city,
+      longitude: values.longitude,
+      latitude: values.latitude,
+      battery: values.battery,
+      status: 'Available',
+      api_key: process.env.api_key
+    }
+    const x_token = localStorage.getItem('token')
+    const response = await fetch(`https://rentalmanagementapi-production.up.railway.app/v1/scooters`, {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'x-access-token': x_token,
+        'content-type': 'application/json'
+      }
+    })
+    const result = await response
+    router.push('/bicycles')
   }
 
   return (
@@ -71,31 +69,16 @@ const AddBicycleForm = () => {
         <form onSubmit={e => e.preventDefault()}>
           <Grid container spacing={5}>
             <Grid item xs={12}>
-              <TextField fullWidth label='BatteryPercentage' placeholder='69' />
+              <TextField fullWidth label='City' placeholder='Kocaeli' onChange={handleChange('city')} />
             </Grid>
             <Grid item xs={12}>
-              <TextField fullWidth label='Latitude' placeholder='90.005' />
+              <TextField fullWidth label='Battery Percentage' placeholder='69' onChange={handleChange('battery')} />
             </Grid>
             <Grid item xs={12}>
-              <TextField fullWidth label='Longitude' placeholder='-50.005' />
+              <TextField fullWidth label='Latitude' placeholder='90.005' onChange={handleChange('latitude')} />
             </Grid>
             <Grid item xs={12}>
-              <InputLabel id='fare-label'>Fare</InputLabel>
-              <Select
-                labelId='fare-label'
-                id='fare'
-                value={fare}
-                fullWidth
-                label='fare'
-                onChange={handleFareChange}
-                placeholder='Normal'
-              >
-                <MenuItem autoFocus={true} selected={true} value={'NORMAL FARE'}>
-                  Normal
-                </MenuItem>
-                <MenuItem value={'X FARE'}>x</MenuItem>
-                <MenuItem value={'Y FARE'}>y</MenuItem>
-              </Select>
+              <TextField fullWidth label='Longitude' placeholder='-50.005' onChange={handleChange('longitude')} />
             </Grid>
 
             <Grid item xs={12}>
@@ -108,7 +91,7 @@ const AddBicycleForm = () => {
                   justifyContent: 'space-between'
                 }}
               >
-                <Button type='submit' variant='contained' size='large'>
+                <Button type='submit' variant='contained' size='large' onClick={add}>
                   Submit
                 </Button>
               </Box>

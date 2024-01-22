@@ -1,4 +1,4 @@
-import React from 'react'
+import { React, useState, useEffect } from 'react'
 
 import Button from '@mui/material/Button'
 import TableBasic from 'src/views/tables/TableBasic'
@@ -8,34 +8,65 @@ import CardHeader from '@mui/material/CardHeader'
 import BasicTable from 'src/views/bicycles/BasicTable'
 
 const Users = () => {
+  const [users, setUsers] = useState([])
+
   const columns = [
-    { id: 'id', label: 'ID' },
     { id: 'first_name', label: 'FIRST NAME' },
     { id: 'last_name', label: 'LAST NAME' },
+    { id: 'phone_number', label: 'PHONE NUMBER' },
     { id: 'mail', label: 'E-MAIL' },
     { id: 'balance', label: 'BALANCE' },
-    { id: 'password', label: 'PASSWORD' },
-    { id: 'role', label: 'ROLE' }
-
-
+    { id: 'password', label: 'PASSWORD' }
   ]
 
-  const data = [
-    { id: 132, first_name: 'EMRAH', last_name: 'KUCUK', mail: 'mekucuk2018@gtu.edu.tr', balance: '28 TL' , password: '5f4dcc3b5aa765d61d8327deb882cf99', role: 'user'},
-    { id: 62, first_name: 'JULIA', last_name: 'CURRY', mail: 'julia@hotmail.com', balance: '90 TL' , password: '6c569aabbf7775ef8fc5705a9f1f9b2f', role: 'user'}
-  ]
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const api_key = process.env.api_key
+        const x_token = localStorage.getItem('token')
+        const options = {
+          method: 'GET',
+          headers: {
+            'content-type': 'application/json',
+            'x-access-token': x_token
+          }
+        }
+
+        const response = await fetch(
+          'https://rentalmanagementapi-production.up.railway.app/v1/users?api_key=' + process.env.api_key,
+          options
+        )
+        const data = await response.json()
+        const users = data['users']
+        if (Array.isArray(users) && users.length > 0) {
+          // Map each object in the array to a new object with specific fields
+          const rows = users.map(user => ({
+            first_name: user['firstName'],
+            last_name: user['lastName'],
+            phone_number: user['phoneNumber'],
+            mail: user['email'],
+            balance: user['balance'] + ' TL',
+            password: user['password']
+            // Add more fields as needed
+          }))
+          setUsers(rows)
+        }
+      } catch (error) {
+        console.error('Error fetching data:', error)
+      }
+    }
+
+    fetchData()
+  }, [])
 
   return (
     <div>
-      <Button size='small' variant='contained' href='/bicycles/addbicycle'>
-        Add Users
-      </Button>
       <div>
         <Grid container spacing={6}>
           <Grid item xs={12}>
             <Card>
               <CardHeader title='Users Table' titleTypographyProps={{ variant: 'h6' }} />
-              <BasicTable columns={columns} data={data} />
+              <BasicTable columns={columns} data={users} />
             </Card>
           </Grid>
         </Grid>
