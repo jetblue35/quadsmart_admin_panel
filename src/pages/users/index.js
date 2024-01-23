@@ -22,7 +22,7 @@ const Users = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const api_key = process.env.api_key
+        const api_key = process.env.API_KEY
         const x_token = localStorage.getItem('token')
 
         const options = {
@@ -34,7 +34,7 @@ const Users = () => {
         }
 
         const response = await fetch(
-          'https://rentalmanagementapi-production.up.railway.app/v1/users?api_key=' + process.env.api_key,
+          'https://rental_management_api.railway.internal/v1/users?api_key=' + process.env.API_KEY,
           options
         )
         const data = await response.json()

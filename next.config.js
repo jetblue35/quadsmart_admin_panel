@@ -8,6 +8,9 @@ module.exports = {
     esmExternals: false,
     jsconfigPaths: true // enables it for both jsconfig.json and tsconfig.json
   },
+  env: {
+    API_KEY: process.env.API_KEY
+  },
   webpack: config => {
     config.resolve.alias = {
       ...config.resolve.alias,
