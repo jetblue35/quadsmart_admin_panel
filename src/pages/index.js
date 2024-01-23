@@ -83,7 +83,7 @@ const LoginPage = () => {
       api_key: process.env.API_KEY
     }
 
-    const response = await fetch(`http://rental_management_api:443/v1/auth/login/server/admin`, {
+    const response = await fetch(`https://rental_management_api:443/v1/auth/login/server/admin`, {
       method: 'POST',
       body: JSON.stringify(data),
       mode: 'no-cors',
