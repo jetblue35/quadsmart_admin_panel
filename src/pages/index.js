@@ -87,7 +87,8 @@ const LoginPage = () => {
       method: 'POST',
       body: JSON.stringify(data),
       headers: {
-        'content-type': 'application/json'
+        'content-type': 'application/json',
+        mode: 'no-cors'
       }
     })
     const result = await response.json()
