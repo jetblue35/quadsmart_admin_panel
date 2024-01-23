@@ -33,10 +33,7 @@ const Users = () => {
           }
         }
 
-        const response = await fetch(
-          'rental_management_api.railway.internal/v1/users?api_key=' + process.env.API_KEY,
-          options
-        )
+        const response = await fetch('v1/users?api_key=' + process.env.API_KEY, options)
         const data = await response.json()
         const users = data['users']
         if (Array.isArray(users) && users.length > 0) {

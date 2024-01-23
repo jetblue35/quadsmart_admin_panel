@@ -33,10 +33,7 @@ const Bicycles = () => {
           }
         }
 
-        const response = await fetch(
-          'rental_management_api.railway.internal/v1/scooters?api_key=' + process.env.API_KEY,
-          options
-        )
+        const response = await fetch('v1/scooters?api_key=' + process.env.API_KEY, options)
         const data = await response.json()
         const bicycles = data['scooters']
         if (Array.isArray(bicycles) && bicycles.length > 0) {
