@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
 
+import { useRouter } from 'next/router'
+
 import Button from '@mui/material/Button'
 import TableBasic from 'src/views/tables/TableBasic'
 import Grid from '@mui/material/Grid'
@@ -18,6 +20,32 @@ const Bicycles = () => {
     { id: 'longitude', label: 'LONGITUDE' },
     { id: 'status', label: 'STATUS' }
   ]
+
+  const router = useRouter()
+
+  const handleDelete = async rowIndex => {
+    // Add your delete logic here based on the rowIndex or row data
+    console.log(bicycles[rowIndex]['id'])
+    const data = {
+      scooter_id: bicycles[rowIndex]['id'],
+      api_key: process.env.API_KEY
+    }
+
+    const x_token = localStorage.getItem('token')
+
+    const response = await fetch(`https://rentalmanagementapi-production.up.railway.app/v1/scooters`, {
+      method: 'DELETE',
+      body: JSON.stringify(data),
+      headers: {
+        'content-type': 'application/json',
+        'x-access-token': x_token
+      }
+    })
+
+    const result = await response
+    console.log(result)
+    router.push('/bicycles')
+  }
 
   useEffect(() => {
     const fetchData = async () => {
@@ -67,7 +95,7 @@ const Bicycles = () => {
           <Grid item xs={12}>
             <Card>
               <CardHeader title='Bicycle Table' titleTypographyProps={{ variant: 'h6' }} />
-              <BasicTable columns={columns} data={bicycles} />
+              <BasicTable columns={columns} data={bicycles} handleDelete={handleDelete} />
             </Card>
           </Grid>
         </Grid>

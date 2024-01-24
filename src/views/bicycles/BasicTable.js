@@ -5,14 +5,11 @@ import TableRow from '@mui/material/TableRow'
 import TableHead from '@mui/material/TableHead'
 import TableBody from '@mui/material/TableBody'
 import TableCell from '@mui/material/TableCell'
+import Button from '@mui/material/Button'
 import TableContainer from '@mui/material/TableContainer'
+import { CursorDefault } from 'mdi-material-ui'
 
-const BasicTable = ({ columns, data }) => {
-  const handleDelete = rowIndex => {
-    // Add your delete logic here based on the rowIndex or row data
-    console.log(`Delete row at index ${rowIndex}`)
-  }
-
+const BasicTable = ({ columns, data, handleDelete }) => {
   return (
     <TableContainer component={Paper}>
       <Table>
@@ -29,6 +26,15 @@ const BasicTable = ({ columns, data }) => {
               {columns.map(column => (
                 <TableCell key={column.id}>{row[column.id]}</TableCell>
               ))}
+
+              <TableCell>
+                <img
+                  style={{ cursor: 'pointer' }}
+                  width={30}
+                  src='../../../images/misc/delete.png'
+                  onClick={() => handleDelete(rowIndex)}
+                />
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>

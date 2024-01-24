@@ -9,7 +9,6 @@ import Typography from '@mui/material/Typography'
 // ** Configs
 import themeConfig from 'src/configs/themeConfig'
 
-
 const Img = styled('img')(({ theme }) => ({
   marginBottom: theme.spacing(10),
   [theme.breakpoints.down('lg')]: {
@@ -23,7 +22,6 @@ const Img = styled('img')(({ theme }) => ({
     marginTop: theme.spacing(13)
   }
 }))
-
 
 // ** Styled Components
 const MenuHeaderWrapper = styled(Box)(({ theme }) => ({
@@ -61,9 +59,9 @@ const VerticalNavHeader = props => {
       {userVerticalNavMenuBranding ? (
         userVerticalNavMenuBranding(props)
       ) : (
-        <Link href='/home' passHref>
+        <Link href='/users' passHref>
           <StyledLink>
-            <Img src='/images/favicon.png'/>
+            <Img src='/images/favicon.png' />
             <HeaderTitle variant='h6' sx={{ ml: 3 }}>
               {themeConfig.templateName}
             </HeaderTitle>

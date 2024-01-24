@@ -86,7 +86,6 @@ const LoginPage = () => {
     const response = await fetch(`https://rentalmanagementapi-production.up.railway.app/v1/auth/login/server/admin`, {
       method: 'POST',
       body: JSON.stringify(data),
-      mode: 'no-cors',
       headers: {
         'content-type': 'application/json'
       }
@@ -149,7 +148,7 @@ const LoginPage = () => {
               sx={{ mb: 4, display: 'flex', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'space-between' }}
             >
               <FormControlLabel control={<Checkbox />} label='Remember Me' />
-              <Link passHref href='/home'>
+              <Link passHref href='/'>
                 <LinkStyled onClick={e => e.preventDefault()}>Forgot Password?</LinkStyled>
               </Link>
             </Box>

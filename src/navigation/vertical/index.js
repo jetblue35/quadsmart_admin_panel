@@ -14,11 +14,6 @@ import { Bicycle, Human, Map } from 'mdi-material-ui'
 const navigation = () => {
   return [
     {
-      title: 'Dashboard',
-      icon: HomeOutline,
-      path: '/home'
-    },
-    {
       sectionTitle: 'Pages'
     },
     {
