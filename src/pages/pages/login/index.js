@@ -75,15 +75,10 @@ const LoginPage = () => {
     event.preventDefault()
   }
 
-  const logIn = () =>{
-    console.log("hello")
-  }
-
   return (
     <Box className='content-center'>
       <Card sx={{ zIndex: 1 }}>
         <CardContent sx={{ padding: theme => `${theme.spacing(12, 9, 7)} !important` }}>
-          
           <Box sx={{ mb: 6 }}>
             <Typography variant='h5' sx={{ fontWeight: 600, marginBottom: 1.5 }}>
               Welcome to {themeConfig.templateName}! 👋🏻
@@ -122,17 +117,9 @@ const LoginPage = () => {
                 <LinkStyled onClick={e => e.preventDefault()}>Forgot Password?</LinkStyled>
               </Link>
             </Box>
-            <Button
-              fullWidth
-              size='large'
-              variant='contained'
-              sx={{ marginBottom: 7 }}
-              onClick={logIn}
-            >
+            <Button fullWidth size='large' variant='contained' sx={{ marginBottom: 7 }}>
               Login
             </Button>
-            
-            
           </form>
         </CardContent>
       </Card>

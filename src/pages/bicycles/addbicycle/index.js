@@ -10,14 +10,6 @@ import DatePickerWrapper from 'src/@core/styles/libs/react-datepicker'
 import AddBicycleForm from 'src/views/bicycles/addbicycle/AddBicycleForm'
 
 const AddBicycle = () => {
-  const [batteryPercentage, setBatteryPercentage] = useState('')
-  const [latitude, setLatitude] = useState('')
-  const [longitude, setLongitude] = useState('')
-
-  const handleSubmit = () => {
-    console.log('handleSubmit')
-  }
-
   return (
     <div>
       <Grid container spacing={6}>

@@ -24,8 +24,6 @@ const Bicycles = () => {
   const router = useRouter()
 
   const handleDelete = async rowIndex => {
-    // Add your delete logic here based on the rowIndex or row data
-    console.log(bicycles[rowIndex]['id'])
     const data = {
       scooter_id: bicycles[rowIndex]['id'],
       api_key: process.env.API_KEY
@@ -43,7 +41,7 @@ const Bicycles = () => {
     })
 
     const result = await response
-    console.log(result)
+
     router.push('/bicycles')
   }
 
