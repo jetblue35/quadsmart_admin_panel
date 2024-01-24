@@ -29,11 +29,6 @@ const BasicTable = ({ columns, data }) => {
               {columns.map(column => (
                 <TableCell key={column.id}>{row[column.id]}</TableCell>
               ))}
-              <TableCell>
-                <Button variant='contained' color='secondary' onClick={() => handleDelete(rowIndex)}>
-                  Delete
-                </Button>
-              </TableCell>
             </TableRow>
           ))}
         </TableBody>
