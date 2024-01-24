@@ -8,6 +8,11 @@ import TableCell from '@mui/material/TableCell'
 import TableContainer from '@mui/material/TableContainer'
 
 const BasicTable = ({ columns, data }) => {
+  const handleDelete = rowIndex => {
+    // Add your delete logic here based on the rowIndex or row data
+    console.log(`Delete row at index ${rowIndex}`)
+  }
+
   return (
     <TableContainer component={Paper}>
       <Table>
@@ -24,6 +29,11 @@ const BasicTable = ({ columns, data }) => {
               {columns.map(column => (
                 <TableCell key={column.id}>{row[column.id]}</TableCell>
               ))}
+              <TableCell>
+                <Button variant='contained' color='secondary' onClick={() => handleDelete(rowIndex)}>
+                  Delete
+                </Button>
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>

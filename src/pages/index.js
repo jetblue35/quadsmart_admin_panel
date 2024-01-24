@@ -86,12 +86,14 @@ const LoginPage = () => {
     const response = await fetch(`https://rentalmanagementapi-production.up.railway.app/v1/auth/login/server/admin`, {
       method: 'POST',
       body: JSON.stringify(data),
+      mode: 'no-cors',
       headers: {
-        'content-type': 'application/json',
-        mode: 'no-cors'
+        'content-type': 'application/json'
       }
     })
+
     const result = await response.json()
+
     console.log(result)
     if (result.data.type === 'success') {
       const token = result.data.token
