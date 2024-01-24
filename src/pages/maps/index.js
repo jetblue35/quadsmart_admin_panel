@@ -1,25 +1,50 @@
-import ReactMapboxGl, { Layer, Feature } from 'react-mapbox-gl'
-import 'mapbox-gl/dist/mapbox-gl.css'
+import React, { useEffect, useState } from 'react'
+import Map from '../../views/maps/MapView'
+import { ConsoleNetworkOutline } from 'mdi-material-ui'
 
 const Maps = () => {
-  const Map = ReactMapboxGl({
-    accessToken: 'pk.eyJ1IjoiZW1yYWhrdWN1ayIsImEiOiJjbHFiYm5qZWwxeDNzMmtudjZ1NmVvNW5tIn0.vdiKiWjmM2zVWfPw_lA98Q'
-  });
-  
-  return(
-  
+  const [bicycles, setBicycles] = useState([])
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const x_token = localStorage.getItem('token')
+
+        const options = {
+          method: 'GET',
+          headers: {
+            'content-type': 'application/json',
+            'x-access-token': x_token
+          }
+        }
+
+        const response = await fetch(
+          'https://rentalmanagementapi-production.up.railway.app/v1/scooters?api_key=' + process.env.API_KEY,
+          options
+        )
+        const data = await response.json()
+        const bicycles = data['scooters']
+        if (Array.isArray(bicycles) && bicycles.length > 0) {
+          // Map each object in the array to a new object with specific fields
+          const rows = bicycles.map(bike => ({
+            latitude: bike['coordinates']['latitude'],
+            longitude: bike['coordinates']['longitude']
+          }))
+
+          console.log(rows)
+          setBicycles(rows)
+        }
+      } catch (error) {
+        console.error('Error fetching data:', error)
+      }
+    }
+
+    fetchData()
+  }, [])
+
+  return (
     <div>
-      <Map
-        style='mapbox://styles/mapbox/streets-v9'
-        containerStyle={{
-          height: '75vh',
-          width: '75vw'
-        }}
-      >
-        <Layer type='symbol' id='marker' layout={{ 'icon-image': 'marker-15' }}>
-          <Feature coordinates={[-0.481747846041145, 51.3233379650232]} />
-        </Layer>
-      </Map>
+      <Map coordinates={bicycles} />
     </div>
   )
 }

@@ -93,11 +93,9 @@ const LoginPage = () => {
 
     const result = await response.json()
 
-    console.log(result)
     if (result.data.type === 'success') {
       const token = result.data.token
 
-      console.log(token)
       localStorage.setItem('token', token)
       router.push('/users')
     }
