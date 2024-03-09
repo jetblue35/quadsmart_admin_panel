@@ -31,7 +31,7 @@ const Users = () => {
 
     const x_token = localStorage.getItem('token')
 
-    const response = await fetch(`https://rentalmanagementapi-production.up.railway.app/v1/users`, {
+    const response = await fetch(`https://quadsmartapi-production.up.railway.app/v1/users`, {
       method: 'DELETE',
       body: JSON.stringify(data),
       headers: {
@@ -59,7 +59,7 @@ const Users = () => {
         }
 
         const response = await fetch(
-          'https://rentalmanagementapi-production.up.railway.app/v1/users?api_key=' + process.env.API_KEY,
+          'https://quadsmartapi-production.up.railway.app/v1/users?api_key=' + process.env.API_KEY,
           options
         )
         const data = await response.json()

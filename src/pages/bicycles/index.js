@@ -31,7 +31,7 @@ const Bicycles = () => {
 
     const x_token = localStorage.getItem('token')
 
-    const response = await fetch(`https://rentalmanagementapi-production.up.railway.app/v1/scooters`, {
+    const response = await fetch(`https://quadsmartapi-production.up.railway.app/v1/scooters`, {
       method: 'DELETE',
       body: JSON.stringify(data),
       headers: {
@@ -60,7 +60,7 @@ const Bicycles = () => {
         }
 
         const response = await fetch(
-          'https://rentalmanagementapi-production.up.railway.app/v1/scooters?api_key=' + process.env.API_KEY,
+          'https://quadsmartapi-production.up.railway.app/v1/scooters?api_key=' + process.env.API_KEY,
           options
         )
         const data = await response.json()

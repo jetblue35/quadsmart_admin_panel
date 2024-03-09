@@ -83,7 +83,7 @@ const LoginPage = () => {
       api_key: process.env.API_KEY
     }
 
-    const response = await fetch(`https://rentalmanagementapi-production.up.railway.app/v1/auth/login/server/admin`, {
+    const response = await fetch(`https://quadsmartapi-production.up.railway.app/v1/auth/login/server/admin`, {
       method: 'POST',
       body: JSON.stringify(data),
       headers: {
