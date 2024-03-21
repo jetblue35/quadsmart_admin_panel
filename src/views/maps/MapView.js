@@ -6,7 +6,7 @@ function MapView({ coordinates }) {
 
   useEffect(() => {
     const loader = new Loader({
-      apiKey: 'AIzaSyA8OZC5Yg2qaxu1B5loyXtNRjlgG8XinnU', // Replace with your actual API key
+      apiKey: process.env.API_KEY, // Replace with your actual API key
       version: 'weekly'
     })
 
