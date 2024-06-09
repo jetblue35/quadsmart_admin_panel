@@ -7,6 +7,7 @@ const Maps = () => {
 
   useEffect(() => {
     const fetchData = async () => {
+      console.log('selam')
       try {
         const x_token = localStorage.getItem('token')
 
@@ -19,13 +20,16 @@ const Maps = () => {
         }
 
         const response = await fetch(
-          'https://quadsmartapi-production.up.railway.app/v1/scooters?api_key=' + process.env.API_KEY,
+          'https://quadsmartapi-production.up.railway.app/v1/scooters/owner/Kocaeli?api_key=' + process.env.API_KEY,
           options
         )
         const data = await response.json()
-        const bicycles = data['scooters']
+        const bicycles = data['cityScooters']
+        console.log(bicycles)
         if (Array.isArray(bicycles) && bicycles.length > 0) {
           // Map each object in the array to a new object with specific fields
+          console.log(bicycles)
+          console.log(bicycles[0])
           const rows = bicycles.map(bike => ({
             latitude: bike['coordinates']['latitude'],
             longitude: bike['coordinates']['longitude']

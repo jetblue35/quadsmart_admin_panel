@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 
 import Button from '@mui/material/Button'
-import TableBasic from 'src/views/tables/TableBasic'
 import Grid from '@mui/material/Grid'
 import Card from '@mui/material/Card'
 import CardHeader from '@mui/material/CardHeader'
@@ -11,6 +10,7 @@ import BasicTable from 'src/views/bicycles/BasicTable'
 
 const Bicycles = () => {
   const [bicycles, setBicycles] = useState([])
+  const [src, setSrc] = useState('')
 
   const columns = [
     { id: 'id', label: 'ID' },

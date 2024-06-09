@@ -8,8 +8,26 @@ import TableCell from '@mui/material/TableCell'
 import Button from '@mui/material/Button'
 import TableContainer from '@mui/material/TableContainer'
 import { CursorDefault } from 'mdi-material-ui'
+import QRCode from 'qrcode'
+import React, { useEffect, useState } from 'react'
 
 const BasicTable = ({ columns, data, handleDelete }) => {
+  const [qrCodes, setQrCodes] = useState({})
+
+  useEffect(() => {
+    const generateQRCodes = async () => {
+      const newQRCodes = {}
+      for (const row of data) {
+        newQRCodes[row.id] = await QRCode.toDataURL(`${row.id}`)
+      }
+      setQrCodes(newQRCodes)
+    }
+
+    generateQRCodes()
+  }, [data])
+
+  const hasUserIdColumn = columns.some(column => column.id === 'user_id')
+
   return (
     <TableContainer component={Paper}>
       <Table>
@@ -28,6 +46,12 @@ const BasicTable = ({ columns, data, handleDelete }) => {
               ))}
 
               <TableCell>
+                <div style={{ display: hasUserIdColumn ? 'none' : 'inline-block' }}>
+                  <a href={qrCodes[row['id']]} download={'qrcode.png'}>
+                    <img width={60} src={qrCodes[row['id']]} />
+                  </a>
+                </div>
+
                 <img
                   style={{ cursor: 'pointer' }}
                   width={30}

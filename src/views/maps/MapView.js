@@ -9,7 +9,8 @@ function MapView({ coordinates }) {
       apiKey: process.env.API_KEY, // Replace with your actual API key
       version: 'weekly'
     })
-
+    console.log('kordinatlar')
+    console.log(coordinates)
     loader.load().then(() => {
       const map = new google.maps.Map(mapRef.current, {
         center: { lat: coordinates[0].latitude, lng: coordinates[0].longitude }, // Center map on the first coordinate
