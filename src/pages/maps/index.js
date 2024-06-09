@@ -27,9 +27,6 @@ const Maps = () => {
         const bicycles = data['cityScooters']
         console.log(bicycles)
         if (Array.isArray(bicycles) && bicycles.length > 0) {
-          // Map each object in the array to a new object with specific fields
-          console.log(bicycles)
-          console.log(bicycles[0])
           const rows = bicycles.map(bike => ({
             latitude: bike['coordinates']['latitude'],
             longitude: bike['coordinates']['longitude']
